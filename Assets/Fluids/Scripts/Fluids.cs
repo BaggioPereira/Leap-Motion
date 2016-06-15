@@ -23,10 +23,10 @@ public class Fluids : MonoBehaviour {
     const float densityDissipation = 0.9999f;
 
     public Vector2 impulsePosition = new Vector2(0.5f, 0.0f);
-    float impulseSize = 0.1f;
+    public float impulseSize = 0.1f;
 
     public Vector2 obstaclePosition = new Vector2(0.5f, 0.5f);
-    float obstacleSize = 0.1f;
+    public float obstacleSize = 0.1f;
 
     GUITexture GUI_tex;
     

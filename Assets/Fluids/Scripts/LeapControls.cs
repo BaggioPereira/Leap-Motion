@@ -34,7 +34,11 @@ namespace Leap.Unity {
                     position.x = position.x + 0.5f;
                     position.y = position.y + 0.7f;
                     newFluids.impulsePosition = new Vector2(position.x, position.y);
-                    Debug.Log(position);
+                    newFluids.impulseSize = hand.PinchStrength * 0.1f;
+                    //Debug.Log(pobstacleSizeosition);
+
+                    //Debug.Log("Left hand " + hand.PinchStrength);
+                    
                 }
 
                 if(hand.IsRight)
@@ -46,7 +50,9 @@ namespace Leap.Unity {
                     position.x = position.x + 0.5f;
                     position.y = position.y + 0.7f;
                     newFluids.obstaclePosition = new Vector2(position.x, position.y);
-                    Debug.Log(position);
+                    newFluids.obstacleSize = hand.PinchStrength * 0.1f;
+                    //Debug.Log(position);
+                    //Debug.Log("Right hand " + hand.PinchStrength);   
                 }
             }
 

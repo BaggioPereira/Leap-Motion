@@ -24,6 +24,7 @@ public class Fluids : MonoBehaviour {
 
     public Vector2 impulsePosition = new Vector2(0.5f, 0.0f);
     public float impulseSize = 0.1f;
+    public Vector2 direction = new Vector2(0.0f, 0.0f);
 
     public Vector2 obstaclePosition = new Vector2(0.5f, 0.5f);
     public float obstacleSize = 0.1f;
@@ -131,6 +132,7 @@ public class Fluids : MonoBehaviour {
         buoyancyMat.SetFloat("_TimeStep", timeStep);
         buoyancyMat.SetFloat("_Sigma", smokeBuoyancy);
         buoyancyMat.SetFloat("_Kappa", smokeWeight);
+        buoyancyMat.SetVector("_Direction", direction);
 
         Graphics.Blit(null, destination, buoyancyMat);
     }
@@ -224,6 +226,21 @@ public class Fluids : MonoBehaviour {
             pos.x /= viewWidth - 1.0f;
             pos.y /= viewHeight - 1.0f;
             obstaclePosition = new Vector2(pos.x, pos.y);
+            CreateObstacles();
+        }
+
+        if(Input.GetMouseButton(2))
+        {
+            Vector2 pos = Input.mousePosition;
+
+            pos.x -= Screen.width * 0.5f;
+            pos.y -= Screen.height * 0.5f;
+
+            pos -= offSet;
+
+            pos.x /= viewWidth - 1.0f;
+            pos.y /= viewHeight - 1.0f;
+            direction = new Vector2(pos.x, pos.y);
             CreateObstacles();
         }
 

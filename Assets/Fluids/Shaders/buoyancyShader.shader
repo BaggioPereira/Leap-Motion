@@ -18,6 +18,7 @@
 			uniform float _TimeStep;
 			uniform float _Sigma;
 			uniform float _Kappa;
+			uniform float2 _Direction;
 
 			struct v2f
 			{
@@ -42,7 +43,7 @@
 				if (T > _AmbientTemperature)
 				{
 					float D = tex2D(_Density, IN.uv).x;
-					result += (_TimeStep * (T - _AmbientTemperature) * _Sigma - D * _Kappa) * float2(0, 1);
+					result += (_TimeStep * (T - _AmbientTemperature) * _Sigma - D * _Kappa) * _Direction;
 				}
 
 				return float4(result, 0, 1);

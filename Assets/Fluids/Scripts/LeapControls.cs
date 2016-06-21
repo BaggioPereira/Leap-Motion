@@ -34,7 +34,7 @@ namespace Leap.Unity {
                     position.x = position.x + 0.5f;
                     position.y = position.y + 0.7f;
                     newFluids.impulsePosition = new Vector2(position.x, position.y);
-                    newFluids.impulseSize = hand.PinchStrength * 0.1f;
+                    //newFluids.impulseSize = hand.PinchStrength * 0.1f;
                     //Debug.Log(pobstacleSizeosition);
 
                     //Debug.Log("Left hand " + hand.PinchStrength);
@@ -43,14 +43,15 @@ namespace Leap.Unity {
 
                 if(hand.IsRight)
                 {
-                    Vector3 position = hand.PalmPosition.ToVector3() +
+                    Vector3 position = hand.Direction.ToVector3() +
                                          hand.PalmNormal.ToVector3() *
                                         (transform.localScale.y * .5f + .02f);
                     //Vector3 rotation = hand.Basis.rotation.ToQuaternion();
                     position.x = position.x + 0.5f;
                     position.y = position.y + 0.7f;
-                    newFluids.obstaclePosition = new Vector2(position.x, position.y);
-                    newFluids.obstacleSize = hand.PinchStrength * 0.1f;
+                    newFluids.direction = new Vector2(position.x, position.y);
+                    //newFluids.obstaclePosition = new Vector2(position.x, position.y);
+                    //newFluids.obstacleSize = hand.PinchStrength * 0.1f;
                     //Debug.Log(position);
                     //Debug.Log("Right hand " + hand.PinchStrength);   
                 }

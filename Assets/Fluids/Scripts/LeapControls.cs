@@ -47,8 +47,8 @@ namespace Leap.Unity {
                                          hand.PalmNormal.ToVector3() *
                                         (transform.localScale.y * .5f + .02f);
                     //Vector3 rotation = hand.Basis.rotation.ToQuaternion();
-                    position.x = position.x + 0.5f;
-                    position.y = position.y + 0.7f;
+                    //position.x = position.x + 0.5f;
+                    //position.y = position.y + 0.7f;
                     newFluids.direction = new Vector2(position.x, position.y);
                     //newFluids.obstaclePosition = new Vector2(position.x, position.y);
                     //newFluids.obstacleSize = hand.PinchStrength * 0.1f;

@@ -96,7 +96,6 @@ GameObject:
   - 33: {fileID: 289608030}
   - 65: {fileID: 289608029}
   - 23: {fileID: 289608028}
-  - 114: {fileID: 289608027}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -104,20 +103,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &289608027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 289608026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a1b2f6d7f86a34c96bfb6001b2ff64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finger: 1
-  defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
-  pinchMat: {fileID: 2100000, guid: ffd09e76b67f3414bbf27600cee5eccb, type: 2}
 --- !u!23 &289608028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1289,6 +1274,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b87db12de8bab47bf7e5311abec1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associations:
+  - cube: {fileID: 289608026}
+    defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
+    pinchMat: {fileID: 2100000, guid: ffd09e76b67f3414bbf27600cee5eccb, type: 2}
+    finger: 4
+  - cube: {fileID: 1673254696}
+    defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
+    pinchMat: {fileID: 2100000, guid: 6cce1ab25736b4240bc90ce75f2a74f5, type: 2}
+    finger: 3
+  - cube: {fileID: 1567914422}
+    defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
+    pinchMat: {fileID: 2100000, guid: ab14ec27313a2fa4db3fbd8976f5fb7f, type: 2}
+    finger: 2
+  - cube: {fileID: 1957968080}
+    defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
+    pinchMat: {fileID: 2100000, guid: e6877069774c527419bfb7cd63092a6a, type: 2}
+    finger: 1
 --- !u!1001 &1367067090
 Prefab:
   m_ObjectHideFlags: 0
@@ -2172,7 +2174,6 @@ GameObject:
   - 33: {fileID: 1567914426}
   - 65: {fileID: 1567914425}
   - 23: {fileID: 1567914424}
-  - 114: {fileID: 1567914423}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -2180,20 +2181,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1567914423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1567914422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a1b2f6d7f86a34c96bfb6001b2ff64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finger: 3
-  defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
-  pinchMat: {fileID: 2100000, guid: e6877069774c527419bfb7cd63092a6a, type: 2}
 --- !u!23 &1567914424
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2267,7 +2254,6 @@ GameObject:
   - 33: {fileID: 1673254700}
   - 65: {fileID: 1673254699}
   - 23: {fileID: 1673254698}
-  - 114: {fileID: 1673254697}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -2275,20 +2261,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1673254697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1673254696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a1b2f6d7f86a34c96bfb6001b2ff64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finger: 2
-  defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
-  pinchMat: {fileID: 2100000, guid: ab14ec27313a2fa4db3fbd8976f5fb7f, type: 2}
 --- !u!23 &1673254698
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2411,7 +2383,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2452,7 +2424,6 @@ GameObject:
   - 33: {fileID: 1957968084}
   - 65: {fileID: 1957968083}
   - 23: {fileID: 1957968082}
-  - 114: {fileID: 1957968081}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -2460,20 +2431,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1957968081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1957968080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a1b2f6d7f86a34c96bfb6001b2ff64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finger: 4
-  defMat: {fileID: 2100000, guid: 1b6f6d2c349ad9748a6ad6b4c615d9a2, type: 2}
-  pinchMat: {fileID: 2100000, guid: 6cce1ab25736b4240bc90ce75f2a74f5, type: 2}
 --- !u!23 &1957968082
 MeshRenderer:
   m_ObjectHideFlags: 0

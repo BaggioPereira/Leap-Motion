@@ -56,9 +56,46 @@ namespace Leap.Unity
             frameIndex = 0.0f;
         }
 
+        public float GetProgress()
+        {
+            return frameIndex / frames.Count;
+        }
+
+        public int GetIndex()
+        {
+            return (int)frameIndex;
+        }
+
         public void AddFrame(Frame frame)
         {
             frames.Add(System.Text.Encoding.UTF8.GetString(frame.Serialize));
+        }
+
+        public Frame GetCurrentFrame()
+        {
+            return currentFrame;
+        }
+
+        public Frame NextFrame()
+        {
+            currentFrame = new Frame();
+            if(frames.Count > 0)
+            {
+                if(frameIndex >= frames.Count && isLooping)
+                {
+                    frameIndex -= frames.Count;
+                }
+                else if(frameIndex < 0 && isLooping)
+                {
+                    frameIndex += frames.Count;
+                }
+                if(frameIndex < frames.Count && frameIndex >=0)
+                {
+                    currentFrame.Deserialize(System.Text.Encoding.UTF8.GetBytes(frames[(int)frameIndex]));
+                    frameIndex += playbackSpeed;
+                }
+            }
+            return currentFrame;
         }
     }
 }

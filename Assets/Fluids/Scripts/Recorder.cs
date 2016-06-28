@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -96,6 +97,69 @@ namespace Leap.Unity
                 }
             }
             return currentFrame;
+        }
+
+        public List<Frame> GetFrames()
+        {
+            List<Frame> newFrames = new List<Frame>();
+            for(int i = 0; i < frames.Count; ++i)
+            {
+                Frame frame = new Frame();
+                frame.Deserialize(System.Text.Encoding.UTF8.GetBytes(frames[i]));
+                newFrames.Add(frame);
+            }
+            return newFrames;
+        }
+
+        public int GetFramesCount()
+        {
+            return frames.Count;
+        }
+
+        public string SaveFile()
+        {
+            string path = "Assets/Recordings" + System.DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".txt";
+            return SaveFile(path);
+        }
+
+        public string SaveFile(string path)
+        {
+            if(File.Exists(@path))
+            {
+                File.Delete(@path);
+            }
+            FileStream stream = new FileStream(path, FileMode.Append, FileAccess.Write);
+            for(int i = 0; i < frames.Count; ++i)
+            {
+                byte[] frameSize = new byte[4];
+                frameSize = System.BitConverter.GetBytes(frames[i].Length);
+                stream.Write(frameSize, 0, frameSize.Length);
+                stream.Write(System.Text.Encoding.UTF8.GetBytes(frames[i]), 0, frames[i].Length);
+            }
+            stream.Close();
+            return path;
+        }
+
+        public void Load(TextAsset textAsset)
+        {
+            Load(textAsset.bytes);
+        }
+
+        public void Load(byte[] data)
+        {
+            frameIndex = 0;
+            frames.Clear();
+            int i = 0;
+            while (i < data.Length)
+            {
+                byte[] frameSize = new byte[4];
+                Array.Copy(data, i, frameSize, 0, frameSize.Length);
+                i += frameSize.Length;
+                byte[] frame = new byte[System.BitConverter.ToUInt32(frameSize, 0)];
+                Array.Copy(data, i, frame, 0, frame.Length);
+                i += frame.Length;
+                frames.Add(System.Text.Encoding.UTF8.GetString(frame));
+            }
         }
     }
 }

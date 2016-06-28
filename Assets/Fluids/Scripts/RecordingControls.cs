@@ -87,5 +87,16 @@ namespace Leap.Unity
                     break;
             }
 	    }
+
+        private void allowBeginRecording()
+        {
+            if (controlsGui != null) controlsGui.text += beginRecordingKey + " -Begin Recording\n";
+            if(Input.GetKeyDown(beginRecordingKey))
+            {
+                ResetRecording();
+                Record();
+                recordingGui.text = "";
+            }
+        }
     }
 }

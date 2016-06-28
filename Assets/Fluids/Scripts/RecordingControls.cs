@@ -78,12 +78,19 @@ namespace Leap.Unity
             switch(GetRecorder().state)
             {
                 case States.Recording:
+                    allowEndRecording();
                     break;
                 case States.Playing:
+                    allowPause();
+                    allowStop();
                     break;
                 case States.Paused:
+                    allowBeginPlayback();
+                    allowStop();
                     break;
                 case States.Stopped:
+                    allowBeginRecording();
+                    allowBeginPlayback();
                     break;
             }
 	    }

@@ -15,13 +15,13 @@ namespace Leap.Unity
         Stopped = 4,
     }
 
-    public class Recorder : MonoBehaviour {
+    public class Recorder {
         public float playbackSpeed = 1.0f;
         public bool isLooping = true;
 
         public States state = States.Playing;
 
-        protected List<string> frames;
+        protected List<byte[]> frames;
         protected float frameIndex;
         protected Frame currentFrame = new Frame();
 
@@ -53,7 +53,7 @@ namespace Leap.Unity
 
         public void Reset()
         {
-            frames = new List<string>();
+            frames = new List<byte[]>();
             frameIndex = 0.0f;
         }
 
@@ -69,7 +69,7 @@ namespace Leap.Unity
 
         public void AddFrame(Frame frame)
         {
-            frames.Add(System.Text.Encoding.UTF8.GetString(frame.Serialize));
+            frames.Add(frame.Serialize);
         }
 
         public Frame GetCurrentFrame()
@@ -92,7 +92,7 @@ namespace Leap.Unity
                 }
                 if(frameIndex < frames.Count && frameIndex >=0)
                 {
-                    currentFrame.Deserialize(System.Text.Encoding.UTF8.GetBytes(frames[(int)frameIndex]));
+                    currentFrame.Deserialize(frames[(int)frameIndex]);
                     frameIndex += playbackSpeed;
                 }
             }
@@ -105,7 +105,7 @@ namespace Leap.Unity
             for(int i = 0; i < frames.Count; ++i)
             {
                 Frame frame = new Frame();
-                frame.Deserialize(System.Text.Encoding.UTF8.GetBytes(frames[i]));
+                frame.Deserialize(frames[i]);
                 newFrames.Add(frame);
             }
             return newFrames;
@@ -118,7 +118,7 @@ namespace Leap.Unity
 
         public string SaveFile()
         {
-            string path = "Assets/Recordings" + System.DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".txt";
+            string path = "Assets/Recordings/" + System.DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".txt";
             return SaveFile(path);
         }
 
@@ -134,7 +134,7 @@ namespace Leap.Unity
                 byte[] frameSize = new byte[4];
                 frameSize = System.BitConverter.GetBytes(frames[i].Length);
                 stream.Write(frameSize, 0, frameSize.Length);
-                stream.Write(System.Text.Encoding.UTF8.GetBytes(frames[i]), 0, frames[i].Length);
+                stream.Write(frames[i], 0, frames[i].Length);
             }
             stream.Close();
             return path;
@@ -158,7 +158,7 @@ namespace Leap.Unity
                 byte[] frame = new byte[System.BitConverter.ToUInt32(frameSize, 0)];
                 Array.Copy(data, i, frame, 0, frame.Length);
                 i += frame.Length;
-                frames.Add(System.Text.Encoding.UTF8.GetString(frame));
+                frames.Add(frame);
             }
         }
     }

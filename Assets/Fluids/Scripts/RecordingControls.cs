@@ -107,5 +107,33 @@ namespace Leap.Unity
                 PlayRecording();
             }
         }
+
+        private void allowEndRecording()
+        {
+            if (controlsGui != null) controlsGui.text += endRecordingKey + " - End Recording\n";
+            if(Input.GetKeyDown(endRecordingKey))
+            {
+                string savePath = FinishAndSave();
+                recordingGui.text = "Recording saves to:\n" + savePath;
+            }
+        }
+
+        private void allowPause()
+        {
+            if (controlsGui != null) controlsGui.text += pausePlaybackKey + " - Paused Playback\n";
+            if(Input.GetKeyDown(pausePlaybackKey))
+            {
+                PauseRecording();
+            }
+        }
+
+        private void allowStop()
+        {
+            if (controlsGui != null) controlsGui.text += stopPlaybackKey + " - Stopped Playback\n";
+            if(Input.GetKeyDown(stopPlaybackKey))
+            {
+                StopRecording();
+            }
+        }
     }
 }

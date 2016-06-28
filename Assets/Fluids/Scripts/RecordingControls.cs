@@ -98,5 +98,14 @@ namespace Leap.Unity
                 recordingGui.text = "";
             }
         }
+
+        private void allowBeginPlayback()
+        {
+            if (controlsGui != null) controlsGui.text += beginPlaybackKey + " - Begin Playback\n";
+            if (Input.GetKeyDown(beginPlaybackKey))
+            {
+                PlayRecording();
+            }
+        }
     }
 }

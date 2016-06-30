@@ -118,7 +118,7 @@ namespace Leap.Unity
 
         public string SaveFile()
         {
-            string path = "Assets/Recordings/" + System.DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".txt";
+            string path = "Assets/Recordings/" + System.DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".bytes";
             return SaveFile(path);
         }
 

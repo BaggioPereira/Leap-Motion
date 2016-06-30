@@ -11,6 +11,8 @@ namespace Leap.Unity
         public bool looping;
         Recorder recorder;
 
+        LeapProvider provider;
+
         public string header;
         public GUIText controlsGui;
         public GUIText recordingGui;

@@ -15,6 +15,24 @@ namespace Leap.Unity
         Stopped = 4,
     }
 
+    public struct FrameData
+    {
+        long id;
+        long timestamp;
+        float fps;
+        InteractionBox iBox;
+        List<Hand> hands;
+
+        public FrameData(long frameID, long frameTimeStamp, float frameFPS, InteractionBox frameIBox, List<Hand> frameHands)
+        {
+            id = frameID;
+            timestamp = frameTimeStamp;
+            fps = frameFPS;
+            iBox = frameIBox;
+            hands = frameHands;
+        }
+    }
+
     public class Recorder {
         public float playbackSpeed = 1.0f;
         public bool isLooping = true;
@@ -24,6 +42,7 @@ namespace Leap.Unity
         protected List<byte[]> frames;
         protected float frameIndex;
         protected Frame currentFrame = new Frame();
+        protected List<FrameData> frameData;
 
         public Recorder()
         {
@@ -53,6 +72,7 @@ namespace Leap.Unity
 
         public void Reset()
         {
+            frameData = new List<FrameData>();
             frames = new List<byte[]>();
             frameIndex = 0.0f;
         }
@@ -69,6 +89,8 @@ namespace Leap.Unity
 
         public void AddFrame(Frame frame)
         {
+            FrameData tempfData = new FrameData(frame.Id, frame.Timestamp, frame.CurrentFramesPerSecond, frame.InteractionBox, frame.Hands);
+            frameData.Add(tempfData);
             frames.Add(frame.Serialize);
         }
 
